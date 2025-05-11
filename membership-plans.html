@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Admin/Assest/style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h3>GymFit Admin</h3>
+                <strong>GF</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#membersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-users"></i>
+                        Members
+                    </a>
+                    <ul class="collapse list-unstyled" id="membersSubmenu">
+                        <li>
+                            <a href="all-members.html">All Members</a>
+                        </li>
+                        <li>
+                            <a href="add-member.html">Add New</a>
+                        </li>
+                        <li>
+                            <a href="membership-plans.html">Membership Plans</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#classesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-dumbbell"></i>
+                        Classes
+                    </a>
+                    <ul class="collapse list-unstyled" id="classesSubmenu">
+                        <li>
+                            <a href="Schedule.html">Schedule</a>
+                        </li>
+                        <li>
+                            <a href="Add-Class.html">Add Class</a>
+                        </li>
+                        <li>
+                            <a href="Trainers.html">Trainers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#paymentsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-credit-card"></i>
+                        Payments
+                    </a>
+                    <ul class="collapse list-unstyled" id="paymentsSubmenu">
+                        <li>
+                            <a href="transactions.html">Transactions</a>
+                        </li>
+                        <li>
+                            <a href="pending.html">Pending</a>
+                        </li>
+                        <li>
+                            <a href="payment-reports.html">Reports</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="workout.html">
+                        <i class="fas fa-dumbbell"></i>
+                        Workouts
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="Reports.html">
+                        <i class="fas fa-chart-line"></i>
+                        Reports
+                    </a>
+                </li>
+                <li>
+                    <a href="setting.html">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge bg-danger">3</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">New member registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Membership expiring soon</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user-circle"></i> Admin
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            
+    <div class="container mt-4">
+        <h2>Membership Plans</h2>
+        <input type="text" class="form-control mb-3" id="searchPlan" placeholder="Search by plan name or benefits">
+      
+        <table class="table table-bordered table-hover" id="plansTable">
+          <thead>
+            <tr>
+              <th>Plan Name</th>
+              <th>Duration</th>
+              <th>Price</th>
+              <th>Benefits</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gold</td>
+              <td>12 Months</td>
+              <td>$499</td>
+              <td>All access + Personal trainer</td>
+              <td>
+                <button class="btn btn-sm btn-warning">Edit</button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Silver</td>
+              <td>6 Months</td>
+              <td>$299</td>
+              <td>Gym access + Group classes</td>
+              <td>
+                <button class="btn btn-sm btn-warning">Edit</button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Bronze</td>
+              <td>3 Months</td>
+              <td>$149</td>
+              <td>Gym access only</td>
+              <td>
+                <button class="btn btn-sm btn-warning">Edit</button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  
+
+
+      
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Membership Plans</h2>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlanModal">
+                                <i class="fas fa-plus"></i> Add New Plan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Available Plans</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Basic Plan -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card plan-card h-100">
+                                            <div class="card-header bg-primary text-white">
+                                                <h4 class="my-2">Basic Plan</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/month</small></h2>
+                                                <ul class="list-unstyled mt-3 mb-4">
+                                                    <li><i class="fas fa-check text-success me-2"></i> Gym Access</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Basic Equipment</li>
+                                                    <li><i class="fas fa-times text-danger me-2"></i> Group Classes</li>
+                                                    <li><i class="fas fa-times text-danger me-2"></i> Personal Trainer</li>
+                                                    <li><i class="fas fa-times text-danger me-2"></i> Locker Access</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-footer bg-transparent">
+                                                <div class="btn-group w-100">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Standard Plan -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card plan-card h-100">
+                                            <div class="card-header bg-success text-white">
+                                                <h4 class="my-2">Standard Plan</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title pricing-card-title">$49<small class="text-muted fw-light">/month</small></h2>
+                                                <ul class="list-unstyled mt-3 mb-4">
+                                                    <li><i class="fas fa-check text-success me-2"></i> Gym Access</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> All Equipment</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Group Classes</li>
+                                                    <li><i class="fas fa-times text-danger me-2"></i> Personal Trainer</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Locker Access</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-footer bg-transparent">
+                                                <div class="btn-group w-100">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Premium Plan -->
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card plan-card h-100">
+                                            <div class="card-header bg-warning text-dark">
+                                                <h4 class="my-2">Premium Plan</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title pricing-card-title">$79<small class="text-muted fw-light">/month</small></h2>
+                                                <ul class="list-unstyled mt-3 mb-4">
+                                                    <li><i class="fas fa-check text-success me-2"></i> 24/7 Gym Access</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> All Equipment</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Unlimited Classes</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Personal Trainer</li>
+                                                    <li><i class="fas fa-check text-success me-2"></i> Premium Locker</li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-footer bg-transparent">
+                                                <div class="btn-group w-100">
+                                                    <button class="btn btn-outline-primary">Edit</button>
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Plan Statistics</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Plan</th>
+                                                                <th>Active Members</th>
+                                                                <th>Monthly Revenue</th>
+                                                                <th>Avg. Duration</th>
+                                                                <th>Renewal Rate</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Basic</td>
+                                                                <td>35</td>
+                                                                <td>$1,015</td>
+                                                                <td>3.2 months</td>
+                                                                <td>42%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Standard</td>
+                                                                <td>90</td>
+                                                                <td>$4,410</td>
+                                                                <td>6.8 months</td>
+                                                                <td>68%</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Premium</td>
+                                                                <td>120</td>
+                                                                <td>$9,480</td>
+                                                                <td>9.5 months</td>
+                                                                <td>85%</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <!-- Add Plan Modal -->
+    <div class="modal fade" id="addPlanModal" tabindex="-1" aria-labelledby="addPlanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPlanModalLabel">Add New Membership Plan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPlanForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="planName" class="form-label">Plan Name</label>
+                                <input type="text" class="form-control" id="planName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="planPrice" class="form-label">Monthly Price ($)</label>
+                                <input type="number" class="form-control" id="planPrice" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="planDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="planDescription" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Features</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featureGymAccess" checked>
+                                <label class="form-check-label" for="featureGymAccess">
+                                    Gym Access
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featureAllEquipment">
+                                <label class="form-check-label" for="featureAllEquipment">
+                                    All Equipment
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featureGroupClasses">
+                                <label class="form-check-label" for="featureGroupClasses">
+                                    Group Classes
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featurePersonalTrainer">
+                                <label class="form-check-label" for="featurePersonalTrainer">
+                                    Personal Trainer
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="featureLockerAccess">
+                                <label class="form-check-label" for="featureLockerAccess">
+                                    Locker Access
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="feature24Access">
+                                <label class="form-check-label" for="feature24Access">
+                                    24/7 Access
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="planDuration" class="form-label">Default Duration (months)</label>
+                                <input type="number" class="form-control" id="planDuration" min="1" value="6">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="planColor" class="form-label">Plan Color</label>
+                                <select class="form-select" id="planColor">
+                                    <option value="primary">Blue (Primary)</option>
+                                    <option value="success">Green (Success)</option>
+                                    <option value="warning">Yellow (Warning)</option>
+                                    <option value="danger">Red (Danger)</option>
+                                    <option value="info">Cyan (Info)</option>
+                                    <option value="dark">Dark</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="addPlanForm" class="btn btn-primary">Save Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission for adding new plan
+            document.getElementById('addPlanForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the data to your backend
+                alert('New membership plan added successfully!');
+                this.reset();
+                var modal = bootstrap.Modal.getInstance(document.getElementById('addPlanModal'));
+                modal.hide();
+            });
+        });
+    </script>
+
+
+      <!-- DataTables JS -->
+      <script src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+      
+      <script>
+        $(document).ready(function() {
+          // Initialize DataTable
+          $('#plansTable').DataTable();
+      
+          // Implement search functionality
+          $('#searchPlan').on('keyup', function () {
+            let table = $('#plansTable').DataTable();
+            table.search($(this).val()).draw();
+          });
+        });
+      </script>
+
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../Admin/Assest/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

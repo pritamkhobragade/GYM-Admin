@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit Admin</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Admin/Assest/style.css">
+
+     <!-- Datepicker CSS -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="active">
+            <div class="sidebar-header">
+                <h3>GymFit Admin</h3>
+                <strong>GF</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#membersSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-users"></i>
+                        Members
+                    </a>
+                    <ul class="collapse list-unstyled" id="membersSubmenu">
+                        <li>
+                            <a href="all-members.html">All Members</a>
+                        </li>
+                        <li>
+                            <a href="add-member.html">Add New</a>
+                        </li>
+                        <li>
+                            <a href="membership-plans.html">Membership Plans</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#classesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-dumbbell"></i>
+                        Classes
+                    </a>
+                    <ul class="collapse list-unstyled" id="classesSubmenu">
+                        <li>
+                            <a href="Schedule.html">Schedule</a>
+                        </li>
+                        <li>
+                            <a href="Add-Class.html">Add Class</a>
+                        </li>
+                        <li>
+                            <a href="Trainers.html">Trainers</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#paymentsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-credit-card"></i>
+                        Payments
+                    </a>
+                    <ul class="collapse list-unstyled" id="paymentsSubmenu">
+                        <li>
+                            <a href="transactions.html">Transactions</a>
+                        </li>
+                        <li>
+                            <a href="pending.html">Pending</a>
+                        </li>
+                        <li>
+                            <a href="payment-reports.html">Reports</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="workout.html">
+                        <i class="fas fa-dumbbell"></i>
+                        Workouts
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="Reports.html">
+                        <i class="fas fa-chart-line"></i>
+                        Reports
+                    </a>
+                </li>
+                <li>
+                    <a href="setting.html">
+                        <i class="fas fa-cog"></i>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-bell"></i>
+                                    <span class="badge bg-danger">3</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">New member registered</a></li>
+                                    <li><a class="dropdown-item" href="#">Membership expiring soon</a></li>
+                                    <li><a class="dropdown-item" href="#">New message received</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                    <i class="fas fa-user-circle"></i> Admin
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Add New Member</h2>
+                            <a href="members.html" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to Members
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Member Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="addMemberForm">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="firstName" class="form-label">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="lastName" class="form-label">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="tel" class="form-control" id="phone" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="dob" class="form-label">Date of Birth</label>
+                                            <input type="text" class="form-control" id="dob" placeholder="Select date">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <select class="form-select" id="gender">
+                                                <option value="">Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Address</label>
+                                        <textarea class="form-control" id="address" rows="2"></textarea>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <label for="city" class="form-label">City</label>
+                                            <input type="text" class="form-control" id="city">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="state" class="form-label">State</label>
+                                            <input type="text" class="form-control" id="state">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="zip" class="form-label">ZIP Code</label>
+                                            <input type="text" class="form-control" id="zip">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="photo" class="form-label">Member Photo</label>
+                                        <input class="form-control" type="file" id="photo" accept="image/*">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Membership Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="membershipPlan" class="form-label">Membership Plan</label>
+                                    <select class="form-select" id="membershipPlan" required>
+                                        <option value="">Select Plan</option>
+                                        <option value="basic">Basic ($29/month)</option>
+                                        <option value="standard">Standard ($49/month)</option>
+                                        <option value="premium">Premium ($79/month)</option>
+                                        <option value="custom">Custom</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="startDate" class="form-label">Start Date</label>
+                                    <input type="text" class="form-control" id="startDate" value="" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="endDate" class="form-label">End Date</label>
+                                    <input type="text" class="form-control" id="endDate" readonly>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="paymentMethod" class="form-label">Payment Method</label>
+                                    <select class="form-select" id="paymentMethod">
+                                        <option value="credit">Credit Card</option>
+                                        <option value="debit">Debit Card</option>
+                                        <option value="cash">Cash</option>
+                                        <option value="bank">Bank Transfer</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="sendWelcomeEmail">
+                                        <label class="form-check-label" for="sendWelcomeEmail">
+                                            Send welcome email
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid gap-2">
+                                    <button type="submit" form="addMemberForm" class="btn btn-primary">
+                                        <i class="fas fa-save"></i> Save Member
+                                    </button>
+                                    <button type="reset" form="addMemberForm" class="btn btn-outline-secondary">
+                                        <i class="fas fa-undo"></i> Reset Form
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize date pickers
+            flatpickr("#dob", {
+                dateFormat: "Y-m-d",
+                maxDate: "today"
+            });
+            
+            flatpickr("#startDate", {
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                onChange: function(selectedDates, dateStr, instance) {
+                    // Auto calculate end date (6 months from start)
+                    if (selectedDates.length > 0) {
+                        const startDate = selectedDates[0];
+                        const endDate = new Date(startDate);
+                        endDate.setMonth(endDate.getMonth() + 6);
+                        document.getElementById('endDate').value = endDate.toISOString().split('T')[0];
+                    }
+                }
+            });
+            
+            // Membership plan change handler
+            document.getElementById('membershipPlan').addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    document.getElementById('endDate').readOnly = false;
+                    flatpickr("#endDate", {
+                        dateFormat: "Y-m-d",
+                        minDate: "today"
+                    });
+                } else {
+                    document.getElementById('endDate').readOnly = true;
+                }
+            });
+            
+            // Form submission
+            document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the data to your backend
+                alert('Member added successfully!');
+                this.reset();
+            });
+        });
+    </script>
+
+
+   <!-- Flatpickr -->
+   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../Admin/Assest/script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
